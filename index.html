@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7 Days of Love </title>
+
+<style>
+/* ===== BASE ===== */
+body {
+  margin: 0;
+  height: 100vh;
+  background: #fdeaea;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* ===== BACKGROUND HEARTS ===== */
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  background: rgba(255,182,193,0.18);
+  transform: rotate(45deg);
+  animation: float 26s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  background: rgba(255,182,193,0.18);
+  border-radius: 50%;
+}
+
+.heart::before { top: -130px; left: 0; }
+.heart::after  { left: -130px; top: 0; }
+
+@keyframes float {
+  0%   { top: 110vh; opacity: 0; }
+  15%  { opacity: 1; }
+  100% { top: -340px; opacity: 0; }
+}
+
+/* ===== CONTENT ===== */
+.container {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page {
+  display: none;
+  text-align: center;
+  padding: 20px;
+}
+
+.page.active {
+  display: block;
+}
+
+/* ===== HEADINGS ===== */
+h1 {
+  color: #b23a48;
+  margin-bottom: 10px;
+}
+
+/* ===== GIF ===== */
+img {
+  width: 240px;
+  margin: 30px 0;
+}
+
+/* ===== CURVED QUOTE (SAFE VERSION) ===== */
+.quote {
+  margin: 10px auto 20px;
+  max-width: 320px;
+}
+
+.quote span {
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 3px;
+  opacity: 0;
+  color: #fa57a6;
+  text-shadow: 0 0 6px rgba(255,120,140,0.35); /* soft glow */
+  animation: wordIn 0.9s ease forwards;
+}
+
+/* smooth pop-in */
+@keyframes wordIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== BUTTONS ===== */
+button {
+  padding: 10px 24px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.yes {
+  background: #ff5a5a;
+  color: white;
+}
+
+.no {
+  background: white;
+  border: 2px solid #ff5a5a;
+  color: #ff5a5a;
+}
+
+/* ===== WATERMARK ===== */
+.watermark {
+  position: fixed;
+  bottom: 7.5px;
+  right: 10px;
+  font-size: 12px;
+  opacity: 0.6;
+  color:black;
+  z-index: 2;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgm" >
+  <source src="bgm.mp3" type="audio/mpeg">
+</audio>
+
+<div id="bg"></div>
+
+<div class="container">
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <h1><b>Ready for 7 days of love?</b></h1>
+  <h2><p style="color:#eb88c8;">For my karishmu babyy</p></h2>
+  
+  <img src="start.gif">
+  <button class="yes" onclick="start(2)">YES</button>
+  <button class="no" onclick="go(10)">NO</button>
+</div>
+
+<!-- TRY AGAIN -->
+<div class="page" id="p10">
+  <h1>why did u click no!?</h1>
+  <img src="restart.gif">
+  <button class="yes" onclick="go(1)">BACK</button>
+</div>
+
+<div class="page" id="p2">
+  <h1> Happy Rose Day</h1>
+  <img src="rose.gif">
+  <div class="quote" data-text="Like this rose my feelings bloom for you"></div>
+  <button class="yes" onclick="go(3)">NEXT</button>
+</div>
+
+<div class="page" id="p3">
+  <h1> Happy Propose Day</h1>
+  <img src="propose.gif">
+  <div class="quote" data-text="I choose you today tomorrow and always"></div>
+  <button class="yes" onclick="go(4)">NEXT</button>
+</div>
+
+<div class="page" id="p4">
+  <h1> Happy Chocolate Day</h1>
+  <img src="chocolate.gif">
+  <div class="quote" data-text="Life is sweeter when you are with me"></div>
+  <button class="yes" onclick="go(5)">NEXT</button>
+</div>
+
+<div class="page" id="p5">
+  <h1> Happy Promise Day</h1>
+  <img src="promise.gif">
+  <div class="quote" data-text="I promise to stay by your side forever"></div>
+  <button class="yes" onclick="go(6)">NEXT</button>
+</div>
+
+<div class="page" id="p6">
+  <h1>Happy Hug Day </h1>
+  <img src="hug.gif">
+  <div class="quote" data-text="My favorite place is right next to you"></div>
+  <button class="yes" onclick="go(7)">NEXT</button>
+</div>
+
+<div class="page" id="p7">
+  <h1> Happy Kiss Day</h1>
+  <img src="kiss.gif">
+  <div class="quote" data-text="Every kiss tells our beautiful story"></div>
+  <button class="yes" onclick="go(8)">NEXT</button>
+</div>
+
+<div class="page" id="p8">
+  <h1> Happy Valentine's day :-) </h1>
+  <img src="valentine.gif">
+  <div class="quote" data-text="You are my today and all my tomorrows"></div>
+    <button class="yes" onclick="go(9)">NEXT</button>
+</div>
+  
+  <div class="page" id="p9">
+    <h1>5 January<br>
+Calendar ke liye ek date,
+mere liye ek yaad...</h1>
+    <img src="love-kiss.gif">
+    <div class="quote" data-text="Har cheez apne waqt par acchi lagti hai
+Ek tum ho jo har waqt acche Lagte ho....">
+</div>
+    
+      <p>
+  <a href="https://wa.me/+919911139379" target="_blank">
+    <b>LOVE U BACHA!<br></b>
+  </a>
+        <a href="https://instagram.com/no.t_akash" target="_blank">
+          <i>from-akash</i>
+     </a>
+</p>
+</div>
+
+</div>
+
+<div class="watermark">
+  <p>
+  ig-
+  <a href="https://instagram.com/no.t_akash" target="_blank">
+    no.t_akash
+  </a>
+  </p>
+</div>
+
+<script>
+/* ===== QUOTE RENDER ===== */
+function renderQuotes() {
+  document.querySelectorAll(".quote").forEach(q => {
+    const words = q.dataset.text.split(" ");
+    q.innerHTML = "";
+    words.forEach((w, i) => {
+      const s = document.createElement("span");
+      s.textContent = w;
+      s.style.animationDelay = (i * 0.22) + "s"; // smoother timing
+      s.style.marginTop = (Math.sin(i / 2) * 4) + "px"; // curved quote
+      q.appendChild(s);
+    });
+  });
+}
+
+function go(n) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById("p" + n).classList.add("active");
+  renderQuotes();
+}
+
+function start(n) {
+  document.getElementById("bgm").play();
+  go(n);
+}
+
+/* ===== HEARTS ===== */
+const bg = document.getElementById("bg");
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.transform = `rotate(45deg) scale(${0.6 + Math.random()})`;
+  bg.appendChild(h);
+  setTimeout(() => h.remove(), 32000);
+}, 3000);
+</script>
+
+</body>
+</html>
